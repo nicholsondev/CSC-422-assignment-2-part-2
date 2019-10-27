@@ -45,12 +45,18 @@ public class Driver {
                addMorePets(scan);
                break;
            case 3:
-               searchByPetName(scan);
+               updateExistingPet(scan);
                break;
            case 4:
-               searchByPetAge(scan);
+               removeExistingPet(scan);
                break;
            case 5:
+               searchByPetName(scan);
+               break;
+           case 6:
+               searchByPetAge(scan);
+               break;
+           case 7:
                System.out.println("Thank you for using the Pet Database System :)");
                break;
 
@@ -59,7 +65,7 @@ public class Driver {
                break;
            }
 
-       } while (option != 5);
+       } while (option != 7);
 
        scan.close();
    }
@@ -101,6 +107,38 @@ public class Driver {
 
        } while (!petString.equalsIgnoreCase("done"));
        System.out.println(count + " pets added.");
+   }
+   
+   //updating an existing pet
+   private static void updateExistingPet(Scanner scan) {
+
+       viewAllPets();
+       System.out.print("Enter the pet ID you want to update: ");
+       int id = scan.nextInt();
+       scan.nextLine();
+       System.out.print("Enter new name and new age: ");
+       String petString = scan.nextLine();
+       String name = petString.split("\\s+")[0];
+       int age = Integer.parseInt(petString.split("\\s+")[1]);
+       String oldName = pets.get(id).getName();
+       int oldAge = pets.get(id).getAge();
+       pets.get(id).setName(name);
+       pets.get(id).setAge(age);
+
+       System.out.println(oldName + " " + oldAge + " changed to " + name + " " + age);
+   }
+
+   //removing of a pet
+   private static void removeExistingPet(Scanner scan) {
+
+       viewAllPets();
+       System.out.print("Enter the pet ID to remove: ");
+       int id = scan.nextInt();
+       scan.nextLine();
+       String name = pets.get(id).getName();
+       int age = pets.get(id).getAge();
+       pets.remove(id);
+       System.out.println(name + " " + age + " is removed.");
    }
    
    //search for pet by name
@@ -150,14 +188,16 @@ public class Driver {
    }
     
    //build the menu
-   public static void menu() {
+     public static void menu() {
 
        System.out.println("What would like to do?\n" + 
                           "\t1) View all pets\n" + 
                           "\t2) Add more pets\n" + 
-                          "\t3) Search pets by name\n" +
-                          "\t4) Search pets by age\n" +
-                          "\t5) Exit program");
+                          "\t3) Update an existing pet\n" + 
+                          "\t4) Remove an existing pet\n" + 
+                          "\t5) Search pets by name\n" + 
+                          "\t6) Search pets by age\n" + 
+                          "\t7) Exit program");
    }
 
 }
