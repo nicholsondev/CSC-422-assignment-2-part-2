@@ -45,6 +45,12 @@ public class Driver {
                addMorePets(scan);
                break;
            case 3:
+               searchByPetName(scan);
+               break;
+           case 4:
+               searchByPetAge(scan);
+               break;
+           case 5:
                System.out.println("Thank you for using the Pet Database System :)");
                break;
 
@@ -53,7 +59,7 @@ public class Driver {
                break;
            }
 
-       } while (option != 3);
+       } while (option != 5);
 
        scan.close();
    }
@@ -96,6 +102,52 @@ public class Driver {
        } while (!petString.equalsIgnoreCase("done"));
        System.out.println(count + " pets added.");
    }
+   
+   //search for pet by name
+   private static void searchByPetName(Scanner scan) {
+
+       System.out.print("Enter name to search: ");
+       String name = scan.nextLine();
+
+       System.out.println("+---------------------------------------+");
+       System.out.printf("|%5s%5s%10s%10s%5s%5s\n", "ID", "|", "NAME", "|", "AGE", "|");
+       System.out.println("+---------------------------------------+");
+       int i = 0;
+       for (Pet pet : pets) {
+
+           if (pet.getName().equalsIgnoreCase(name)) {
+
+               System.out.printf("|%5d%5s", i, pet.toString());
+               i++;
+           }
+       }
+       System.out.println("+---------------------------------------+");
+       System.out.println((i) + "rows in set.");
+
+   }
+
+   //search for pet by age
+   private static void searchByPetAge(Scanner scan) {
+
+       System.out.print("Enter age to search: ");
+       int age = scan.nextInt();
+       scan.nextLine();
+       System.out.println("+---------------------------------------+");
+       System.out.printf("|%5s%5s%10s%10s%5s%5s\n", "ID", "|", "NAME", "|", "AGE", "|");
+       System.out.println("+---------------------------------------+");
+       int i = 0;
+       for (Pet pet : pets) {
+
+           if (pet.getAge() == age) {
+
+               System.out.printf("|%5d%5s", i, pet.toString());
+               i++;
+           }
+       }
+       System.out.println("+---------------------------------------+");
+       System.out.println((i) + "rows in set.");
+
+   }
     
    //build the menu
    public static void menu() {
@@ -103,7 +155,9 @@ public class Driver {
        System.out.println("What would like to do?\n" + 
                           "\t1) View all pets\n" + 
                           "\t2) Add more pets\n" + 
-                          "\t3) Exit program");
+                          "\t3) Search pets by name\n" +
+                          "\t4) Search pets by age\n" +
+                          "\t5) Exit program");
    }
 
 }
