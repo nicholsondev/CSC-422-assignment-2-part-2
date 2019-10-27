@@ -53,7 +53,7 @@ public class Driver {
                break;
            }
 
-       } while (option != 7);
+       } while (option != 3);
 
        scan.close();
    }
