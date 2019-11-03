@@ -1,7 +1,7 @@
 /*
  * Devin Nicholson
  * CSC 422 Software Engineering
- * Week 1 / Assignement 1 Part 2 Version Control
+ * Week 2 / Assignement 2 Part 2 
  * Created: 10/23/2019
  * Revised: 
  * 
