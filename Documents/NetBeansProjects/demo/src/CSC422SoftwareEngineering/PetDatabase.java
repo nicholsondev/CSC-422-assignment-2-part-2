@@ -8,7 +8,7 @@
  * Pet database that saves and loads from a text file.
  * only allows 5 pets in database
  * Age is limited 1 to 20
- * 
+ * expect input errors and notify user 
  */
 package CSC422SoftwareEngineering;
 
